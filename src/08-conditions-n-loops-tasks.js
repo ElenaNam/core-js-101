@@ -174,10 +174,11 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const arr = str.split('');
+  const result = arr.find((el) => arr.filter((elem) => elem === el).length === 1) || null;
+  return result;
 }
-
 
 /**
  * Returns the string representation of math interval,
@@ -218,8 +219,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 
@@ -235,8 +236,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return num.toString().split('').reverse().join('');
 }
 
 
@@ -305,6 +306,13 @@ function getDigitalRoot(/* num */) {
  *   '{[(<{[]}>)]}' = true
  */
 function isBracketsBalanced(/* str */) {
+/*   const arr1 = ['[', '{', '<', '('];
+  const arr2 = [']', '}', '>', ')'];
+  const arrStart = str.split('').map((el) => arr1.includes(el));
+  const arrEnd = str.split('').map((el) => arr2.includes(el));
+  const arrStartTrueLength = arrStart.filter((elem) => elem === true).length;
+  const arrEndTrueLength = arrEnd.filter((elem) => elem === true).length;
+  return arrStartTrueLength === arrEndTrueLength; */
   throw new Error('Not implemented');
 }
 
@@ -369,8 +377,25 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const rowsM1 = m1.length;
+  const colsM1 = m1[0].length;
+  const rowsM2 = m2.length;
+  const colsM2 = m2[0].length;
+  const result = [];
+  if (colsM1 !== rowsM2) return false;
+  m1.forEach((el, i) => {
+    result[i] = [];
+    return result;
+  });
+  for (let n = 0; n < colsM2; n += 1) {
+    for (let m = 0; m < rowsM1; m += 1) {
+      let temp = 0;
+      for (let j = 0; j < rowsM2; j += 1) temp += m1[m][j] * m2[j][n];
+      result[m][n] = temp;
+    }
+  }
+  return result;
 }
 
 
