@@ -311,8 +311,11 @@ function isCreditCardNumber(ccn) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const arr = num.toString().split('');
+  const sum = arr.reduce((acc, el) => acc + +el, 0);
+  if (sum > 0) return sum.toString().split('').reduce((accum, elem) => accum + +elem, 0);
+  return sum;
 }
 
 
@@ -340,14 +343,24 @@ function getDigitalRoot(/* num */) {
 function isBracketsBalanced(/* str */) {
 /*   const arr1 = ['[', '{', '<', '('];
   const arr2 = [']', '}', '>', ')'];
-  const arrStart = str.split('').map((el) => arr1.includes(el));
-  const arrEnd = str.split('').map((el) => arr2.includes(el));
-  const arrStartTrueLength = arrStart.filter((elem) => elem === true).length;
-  const arrEndTrueLength = arrEnd.filter((elem) => elem === true).length;
-  return arrStartTrueLength === arrEndTrueLength; */
+  const arr = str.split('');
+  const arrResult1 = [];
+  const arrResult2 = [];
+  arr.map((el) => {
+    if (arr1.includes(el)) {
+      const a = el;
+      arrResult1.push(arr1.indexOf(a));
+    } else if (arr2.includes(el)) {
+      const b = el;
+      arrResult2.push(arr2.indexOf(b));
+    }
+    return false;
+  });
+  const value1 = arrResult1.sort((n, m) => m - n);
+  const value2 = arrResult2.sort((k, p) => p - k);
+  return (JSON.stringify(value1) !== JSON.stringify(value2)); */
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the string with n-ary (binary, ternary, etc, where n <= 10)
