@@ -205,8 +205,22 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let startBracket;
+  let endBracket;
+  if (isStartIncluded) {
+    startBracket = '[';
+  } else if (!isStartIncluded) {
+    startBracket = '(';
+  }
+  if (isEndIncluded) {
+    endBracket = ']';
+  } else if (!isEndIncluded) {
+    endBracket = ')';
+  }
+  let str = `${startBracket}${a}, ${b}${endBracket}`;
+  if (a > b) str = `${startBracket}${b}, ${a}${endBracket}`;
+  return str;
 }
 
 
@@ -264,8 +278,23 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const ccnArr = ccn.toString().split('');
+  const arr = ccnArr.slice(0, -1).reverse();
+  const arr1 = arr.map((el, i) => {
+    if (i % 2 === 0) {
+      const elem = el * 2;
+      if (elem > 9) {
+        const arrEl = elem.toString().split('');
+        return +arrEl[0] + +arrEl[1];
+      }
+      return elem;
+    }
+    return el;
+  });
+  const sum = arr1.reduce((acc, el) => acc + +el, 0);
+  const checkDigit = (sum * 9) % 10;
+  return +checkDigit === +ccnArr[ccnArr.length - 1];
 }
 
 /**
